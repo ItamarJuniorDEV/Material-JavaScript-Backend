@@ -1,0 +1,26 @@
+Métodos de Arrays:
+
+Métodos que RETORNAM elementos:
+find() = retorna O PRIMEIRO elemento que atende a condição
+filter() = retorna TODOS que atendem a condição (novo array)
+map() = TRANSFORMA todos e retorna array novo
+reduce() = REDUZ tudo a um único valor (soma, objeto, etc)
+
+Métodos que MODIFICAM o array original:
+push() = adiciona no FINAL
+pop() = remove do FINAL
+unshift() = adiciona no INÍCIO
+shift() = remove do INÍCIO
+splice() = remove/adiciona em QUALQUER posição
+sort() = ORDENA o array
+reverse() = INVERTE a ordem
+
+Métodos que NÃO modificam:
+forEach() = executa ação para cada (não retorna nada)
+includes() = verifica se EXISTE (retorna true/false)
+indexOf() = retorna a POSIÇÃO do elemento
+some() = verifica se ALGUM atende condição (true/false)
+every() = verifica se TODOS atendem condição (true/false)
+slice() = copia PEDAÇO do array
+concat() = JUNTA arrays
+join() = transforma em STRING

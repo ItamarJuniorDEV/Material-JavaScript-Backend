@@ -1,0 +1,131 @@
+Nesse tópico, irei abordar como e quando saber o momento de usar
+map, find e findOf
+
+1. map
+Esse método é responsável por criar um novo array 
+transformando cada elemento do array original.
+
+O map SEMPRE:
+- Percorre TODOS os elementos
+- Retorna um NOVO array
+- com o MESMO tamanho do original
+- Não modifica o array original
+
+Exemplo:
+// Base de dados de produtos
+const produtos = [
+  { id: 1, nome: 'Notebook', preco: 3000, estoque: 5 },
+  { id: 2, nome: 'Mouse', preco: 50, estoque: 20 },
+  { id: 3, nome: 'Teclado', preco: 150, estoque: 0 }
+];
+
+// Rota para listar produtos com status de disponibilidade
+app.get('/produtos-status', (req, res) => {
+  
+  // map() transforma CADA produto em um novo formato
+  const produtosComStatus = produtos.map(produto => {
+    // Para cada produto, retorna um novo objeto
+    return {
+      id: produto.id,
+      nome: produto.nome,
+      preco: produto.preco,
+      // Adiciona campo novo baseado no estoque
+      disponivel: produto.estoque > 0 ? 'Em estoque' : 'Esgotado',
+      // Adiciona se é caro ou barato
+      categoria: produto.preco > 500 ? 'Premium' : 'Básico'
+    };
+  });
+  
+  // Retorna o NOVO array com produtos transformados
+  res.json(produtosComStatus);
+});
+--------------------------------------------------------------------------
+2. find
+Esse método procura um elemento específico dentro de um array.
+
+O find SEMPRE:
+- Percorre o array elemento por elemento
+- Retorna o primeiro elemento que atende a condição definida
+- Para de buscar assim que bater com a condição
+- Não modifica o array original
+- Aceita uma função callback que testa cada elemento
+
+Quando usar:
+- Para achar uma pessoa específica numa lista
+- Encontrar um produto pelo código
+
+Exemplo:
+// Array que simula um banco de dados com 3 usuários
+const usuarios = [
+  { id: 1, nome: 'João', email: 'joao@email.com' },
+  { id: 2, nome: 'Maria', email: 'maria@email.com' },
+  { id: 3, nome: 'Pedro', email: 'pedro@email.com' }
+];
+
+// Cria uma rota GET que aceita um ID na URL
+app.get('/usuario/:id', (req, res) => {
+  // Pega o ID da URL e transforma em número
+  const id = parseInt(req.params.id);
+  
+  // Procura no array o usuário que tem esse ID
+  const usuario = usuarios.find(u => u.id === id);
+  
+  // Se achou o usuário
+  if (usuario) {
+    // Envia o usuário como resposta
+    res.json(usuario);
+  } else {
+    // Se não achou, envia erro 404
+    res.status(404).json({ erro: 'Usuário não encontrado' });
+  }
+});
+--------------------------------------------------------------------------
+3. findIndex
+Esse método pega a posição de um elemento no array
+
+O findIndex SEMPRE:
+- Percorre o array elemento por elemento
+- Retorna o ÍNDICE(posição) do primeiro que atende a condição
+- se não encontrar, retorna -1
+- Para de procurar assim que acha o primeiro
+
+Quando usar:
+- Quando precisa ATUALIZAR um item no array original
+- Quando precisa DELETAR um item do array
+- Quando precisa saber EM QUE POSIÇÃO está o elemento
+- Quando o importante é o ONDE e não O QUE
+
+Exemplo:
+// Base de dados de tarefas
+const tarefas = [
+  { id: 1, titulo: 'Fazer relatório', concluida: true },
+  { id: 2, titulo: 'Reunião com cliente', concluida: false },
+  { id: 3, titulo: 'Corrigir bugs', concluida: false },
+  { id: 4, titulo: 'Deploy da aplicação', concluida: true }
+];
+
+// Rota para marcar tarefa como concluída
+app.put('/tarefa-concluir/:id', (req, res) => {
+  // Pega o ID da tarefa da URL
+  const tarefaId = parseInt(req.params.id);
+  
+  // findIndex() retorna a POSIÇÃO da tarefa com esse ID
+  const indice = tarefas.findIndex(tarefa => tarefa.id === tarefaId);
+  // Se ID é 3, retorna 2 (terceira posição no array)
+  
+  // Se achou a tarefa (índice diferente de -1)
+  if (indice !== -1) {
+    // Atualiza a tarefa naquela posição
+    tarefas[indice].concluida = true;
+    
+    // Retorna a tarefa atualizada
+    res.json({
+      mensagem: 'Tarefa concluída!',
+      tarefa: tarefas[indice],
+      posicaoNoArray: indice
+    });
+  } else {
+    // Se não achou (índice = -1)
+    res.status(404).json({ erro: 'Tarefa não encontrada' });
+  }
+});

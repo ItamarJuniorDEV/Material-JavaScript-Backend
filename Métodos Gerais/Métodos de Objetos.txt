@@ -1,0 +1,15 @@
+Métodos de Objetos
+
+Para pegar informações:
+Object.keys() = retorna array com as CHAVES
+Object.values() = retorna array com os VALORES
+Object.entries() = retorna array com [chave, valor]
+
+Para manipular:
+Object.assign() = COPIA propriedades de um objeto para outro
+Object.freeze() = CONGELA (não pode mudar)
+Object.seal() = SELA (pode mudar valores, mas não adicionar/remover)
+
+Para verificar:
+hasOwnProperty() = verifica se tem a PROPRIEDADE
+Object.is() = compara se dois valores são IGUAIS

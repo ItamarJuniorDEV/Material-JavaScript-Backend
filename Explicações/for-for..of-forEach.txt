@@ -61,34 +61,39 @@ Características:
 - Não funciona com await
 - Usamos quando queremos executar algo sem parar no meio
 
-Estrutura Padrão:
-const frutas = ['maçã', 'banana', 'laranja'];
+Exemplo:
+// Base de dados de produtos
+const produtos = [
+  { id: 1, nome: 'Notebook', preco: 3000, estoque: 5 },
+  { id: 2, nome: 'Mouse', preco: 50, estoque: 20 },
+  { id: 3, nome: 'Teclado', preco: 150, estoque: 0 }
+];
 
-Arrow Function:
-frutas.forEach((fruta, i) => {
-  console.log(`Fruta ${i}: ${fruta}`);
+// Rota para aplicar desconto em todos os produtos
+app.post('/aplicar-desconto', (req, res) => {
+  // Pega o percentual de desconto do corpo da requisição
+  const desconto = req.body.desconto; // Ex: 10 (para 10%)
+  
+  // Lista para guardar os produtos com desconto
+  const produtosComDesconto = [];
+  
+  // forEach passa por CADA produto do array
+  produtos.forEach(produto => {
+    // Calcula o novo preço com desconto
+    const novoPreco = produto.preco - (produto.preco * desconto / 100);
+    
+    // Adiciona o produto com novo preço na lista
+    produtosComDesconto.push({
+      id: produto.id,
+      nome: produto.nome,
+      precoOriginal: produto.preco,
+      precoComDesconto: novoPreco
+    });
+  });
+  
+  // Retorna todos os produtos com os novos preços
+  res.json(produtosComDesconto);
 });
-- frutas é um array com 3 strings
-- forEach é método que chama uma função interna pra cada item
-- (fruta) é o valor que atribuímos para pegar o item do array
-- i é o índice do array
-
-E se quisessemos pegar só laranja?
-
-frutas.forEach((fruta) => {
-  if (fruta === 'laraja') {
-    console.log('Achei a laraja);
-  }
-});
-
-Função Normal:
-const frutas = ['maçã', 'banana', 'laranja'];
-
-frutas.forEach(function(fruta)) {
-  if(fruta === 'laranja') {
-    console.log('Achei a laranja');
-  }
-}
 --------------------------------------------------------------------------
 
 
