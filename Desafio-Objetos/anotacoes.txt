@@ -1,0 +1,188 @@
+1. O que são objetos?
+Objetos são coleções de valores NÃO ORDENADOS,
+organizados em pares de chave-valor:
+const obj = {
+  chave: valor,
+  chave: valor,
+  chave: valor,
+} 
+Usamos objetos para agrupar dados:
+const cliente = {
+  nome: 'Itamar Jr',
+  cpf: '12345678976',
+  email: 'email@gmail.com',
+}
+------------------------------------
+2. Objeto no Objeto:
+const cliente = {
+  nome: 'Itamar Jr',
+  cpf: '123456789',
+  email: 'j@j.com',
+  score: 865,
+  recorrente: true,
+  endereco: {
+    logradouro: 'Rua A',
+    num: '125A',
+    complemento: 'apto 24'
+  },
+  tags: ['premium', 'clube'],
+};
+------------------------------------
+3. Array de objetos:
+const clientes = [
+  {
+    nome: 'Frank Jr',
+    cpf: '12345678987',
+    email:'j@j.com',
+  },
+  {
+    nome: 'Cleverson A',
+    cpf: '12345667894',
+    email:'c@c.com',
+  },
+  {
+    nome: 'Carlos M',
+    cpf: '12345678934',
+    email:'caca@ca.com',
+  },
+];
+------------------------------------
+4. Manipulando Objetos - Notação de Ponto
+const cliente = {
+  nome: 'Itamar Jr',
+  cpf: '12345678912',
+  email: 'j@j.com',
+  score: 865,
+  recorrente: true,
+  endereco: {
+    logradouro: 'Rua A',
+    num: '125A',
+    complemento: 'apto 24',
+  },
+  tags: ['premium, 'clube']
+};
+
+console.log(cliente.nome); // string
+console.log(cliente.score); // número
+console.log(cliente.endereco); // objetos
+console.log(cliente.tag); // array
+
+Se eu quiser pegar os dados do logradouro?
+objeto dentro de objeto dentro de objeto
+console.log(cliente.endereco.logradouro); // string
+
+E tags?
+objeto dentro de array que pega o índice
+console.log(cliente.tags[0]); // string
+------------------------------------
+5. Adicionando Objetos - Notação de Ponto
+Se quisermos adicionar um dado, podemos! Porem,
+se já tiver dados e tentarmos mandar mais, o valor antigo
+será substituído,então CUIDADO!
+const cliente = {
+  nome: 'Joana A',
+  cpf: '12345678987',
+  email: 'j@j.com',
+};
+cliente.celular = '551199999999';
+console.log(cliente);
+cliente.celular = '551199999998';
+console.log(cliente.celular);
+------------------------------------
+6. Outras forma que temos para manipular objetos
+é utilizando notação de colchetes
+const cliente = {
+  'nome completo': 'Joana A',
+  cpf: '12345678987',
+  email: 'j@j.com',
+};
+console.log(cliente['nome completo']);
+OBS: TEM QUE ESTAR COMO STRING e deve ser retornada
+como string.
+------------------------------------
+7. Excluir objeto
+Para excluir um objeto, basta usar
+o comando "delete" antes da propriedade,
+exemplo:
+delete cliente.cpf;
+------------------------------------
+8. Métodos internos de objetos
+const cliente = {
+  nome: 'Itamar Jr',
+  score: 865,
+  recorrente: true,
+  tags: ['premium, 'clube'],
+  saudarCliente: function() {
+    console.log(`boas vindas, ${this->nome}`);
+  },
+  cliente.informarScore = function informarScore() {
+    console.log(`seu score é ${this.score}`);
+  };
+};
+cliente.saudarCliente();
+------------------------------------
+9. Métodos de Objetos 
+const cliente = {
+  nome: 'Itamar Jr',
+  cpf: '12345678901'
+  email: 'j@j.com',
+  score: 865,
+  recorrente: true,
+  tags: ['premium, 'clube'],
+},
+
+9.1 Object.keys: É um método que recebe um objeto
+e retorna um array de strings contendo todas as chaves do objeto.
+console.log(Object.keys(cliente));
+// [ 'nome', 'cpf', 'email', 'score', 'recorrente', 'tags']
+
+9.2 Object.values: É um método que recebe um objeto
+e retorna um array com os valores de todas as chaves do objeto.
+console.log(Object.values(cliente));
+// [ 'Itamar Jr', '12345678901', 'j@j.com', '865', 'true', ['premium, 'clube']]
+OBS: OS 2 OBJETOS ACIMA NÃO SÃO COLEÇÕES ORDENADAS!
+
+9.3 Object.entries(cliente): É um método que recebe um objeto
+e cria um array de arrays contendo os conjuntos (chave e valor)
+e são convertidas para string.
+console.log(Object.values(cliente));
+[
+   [ 'nome', 'Itamar Jr'],
+   [ 'cpf' , '12345678901'],
+   [ 'email', 'j@j.com'],
+   ['score', 865],
+   ['recorrente', true],
+   ['tags, [ 'premium, clube']]
+];
+OBS: OS 2 OBJETOS ACIMA NÃO SÃO COLEÇÕES ORDENADAS!
+------------------------------------
+10. Iteração de objetos com FOR...IN / Usa notação de colchetes
+Cria a variável pra guardar a chave in nome do Objeto
+const cliente = {
+  nome: 'Itamar Jr',
+  cpf: '12345678901'
+  email: 'j@j.com',
+  score: 865,
+  recorrente: true,
+  tags: ['premium, 'clube'],
+};
+for (const info in cliente) {
+  const texto = `chave ${info}, valor do tipo ${typeof cliente[info]}`;
+  console.log(texto);
+}
+------------------------------------
+11. Quando usar notação com "." e quando usar "[]"
+
+11.1 Notação com ".":
+Usamos essa notação quando o nome da propriedade é 
+simples, sem espaço e não começa com número.
+Exemplo:
+obj.nome
+
+11.2 Notação com "[]":
+Usamos essa notação quando o nome da propriedade tem
+espaço, número ou é variável
+Exemplo:
+obj['nome']
+obj['nome completo']
+------------------------------------

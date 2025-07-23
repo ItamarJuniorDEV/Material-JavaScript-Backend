@@ -1,0 +1,7 @@
+- Cada posição tem um índice sequencial que inicia em 0
+- Arrays no JS podem ter mais de um tipo de dados,
+porém não é recomendado.
+- Com arrays, não é possível adicionar o valor de uma lista que nem com variáveis
+que declara a mesma variável com outro valor, para trocar, precisa usar
+o método push.
+- É possível alterar os elementos dos arrays declarados como const
