@@ -1,4 +1,4 @@
-Nesse tópico, irei abordar quando saber o momento de usar
+Nesse tópico, irei abordar como e quando saber o momento de usar
 for, for...of e forEach
 
 1. for

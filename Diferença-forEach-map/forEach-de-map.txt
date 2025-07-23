@@ -1,0 +1,5 @@
+// forEach = faz algo com cada item mas NÃO retorna nada
+usuarios.forEach(user => console.log(user.nome)); // só imprime
+
+// map = TRANSFORMA e RETORNA um novo array
+const nomes = usuarios.map(user => user.nome); // ["João", "Maria", "Pedro"]
