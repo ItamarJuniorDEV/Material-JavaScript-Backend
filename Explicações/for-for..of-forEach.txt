@@ -1,0 +1,95 @@
+Nesse tópico, irei abordar quando saber o momento de usar
+for, for...of e forEach
+
+1. for
+Esse laço de repetição é a forma mais "clássica" de fazer
+loop, podendo ser utilizado para vários tipos de iterações,
+deixando clara todas as fases de cada loop.
+
+Estrutura Padrão:
+const lista [1,3,4,5];
+
+for (let i = 0; i < lista.length; i++) {
+  console.log(lista[i])
+}
+
+- let i = 0 significa que o i será o valor iterado
+irá iniciar com o valor 0.
+- i < lista.length significa que a iteração só vai parar
+quando a iteração for menor que o número de elementos no array
+- i++ é o mesmo que i + 1
+- No console.log, o lista[i] significa que o i possui o valor de cada elemento
+Quando i = 0, lista[0] é 1
+Quando i = 1, lista[1] é 3
+Quando i = 2, lista[2] é 4
+Quando i = 3, lista[3] é 5
+--------------------------------------------------------------------------
+2. for...of
+Adicionado às funcionalidades do JavaScript ES6,
+esse laço é utilizado quando queremos ler cada coisa da lista,
+um de cada vez sem muita complicação ou realizar operações matemáticas.
+- Usado paras salvar dados:
+for (const usuario of usuarios) {
+  if (usuario.email.includes('@')) {
+    await salvarNoBanco(usuario);
+  }
+}
+
+Estrutura Padrão:
+const lista = [1,2,3,4,5];
+let soma = 0;
+
+for (let elemento of lista) {
+  soma += elemento;
+}
+console.log(soma)
+
+- Antes do loop: soma = 0
+Quando elemento = 1, soma = 0 + 1
+Quando elemento = 2, soma = 1 + 2
+Quando elemento = 3, soma = 3 + 3
+Quando elemento = 4, soma = 6 + 4
+Quando elemento = 5, soma = 10 + 5
+--------------------------------------------------------------------------
+3. forEach
+Ao contrário de for e for...of, o forEach() é um método do objeto array
+(só existe em arrays) que serve para rodar um código para cada item da lista.
+
+Características:
+- Esse método não retorna nada
+- Sempre passa por todos os itens
+- Não funciona com await
+- Usamos quando queremos executar algo sem parar no meio
+
+Estrutura Padrão:
+const frutas = ['maçã', 'banana', 'laranja'];
+
+Arrow Function:
+frutas.forEach((fruta, i) => {
+  console.log(`Fruta ${i}: ${fruta}`);
+});
+- frutas é um array com 3 strings
+- forEach é método que chama uma função interna pra cada item
+- (fruta) é o valor que atribuímos para pegar o item do array
+- i é o índice do array
+
+E se quisessemos pegar só laranja?
+
+frutas.forEach((fruta) => {
+  if (fruta === 'laraja') {
+    console.log('Achei a laraja);
+  }
+});
+
+Função Normal:
+const frutas = ['maçã', 'banana', 'laranja'];
+
+frutas.forEach(function(fruta)) {
+  if(fruta === 'laranja') {
+    console.log('Achei a laranja');
+  }
+}
+--------------------------------------------------------------------------
+
+
+
